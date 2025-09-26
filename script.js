@@ -47,3 +47,41 @@ promiseFour.then((userInfo) => {
 
 
 // async await in JavaScript
+const promiseFive = new Promise((resolve, reject) => {
+    setTimeout(function () {
+        let error = true;
+        if (!error) {
+            resolve({ language: 'JavaScript', use: 'Developer' });
+        } else {
+            reject('ERROR: JS went wrong');
+        }
+    }, 1000);
+});
+
+async function consumePromiseFive() {
+    try {
+        let response = await promiseFive;
+        console.log(response);
+    } catch (err) {
+        console.log(err);
+    }
+
+}
+
+consumePromiseFive();
+
+
+
+
+
+async function getAllUsers() {
+    try {
+        let response = await fetch('https://jsonplaceholder.typicode.com/users');
+        let data = await response.json();
+        console.log(data);
+    } catch (error) {
+        console.log("ERROR!!!", error);
+    }
+}
+
+getAllUsers()
